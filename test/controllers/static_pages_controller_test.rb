@@ -19,14 +19,15 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "About"
   end
 
-  test "should get root" do 
-    get root_url
-    assert_response :success
-  end
-
   test "should get contact" do 
     get contact_path
     assert_response :success
     assert_select "title", "Contact"
   end
+
+  test "should get root" do 
+    get root_url
+    assert_response :success
+  end
+
 end
