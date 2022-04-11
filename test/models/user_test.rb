@@ -29,5 +29,27 @@ class UserTest < ActiveSupport::TestCase
     @user.email = "a" * 244 + "@example.com" #change from magic number
     assert_not @user.valid?
   end
+
+  test "email validation should accept valid addresses" do 
+
+    valid_addresses = %w[user@example.com USER@foo.com 
+      A_User@foo.bar.org first.last@foo.jp alice+bob@foo.cn]
+
+    valid_addresses.each do |valid_address|
+      @user.email = valid_address
+      assert @user.valid?, "#{valid_address.inspect} should be valid"
+    end
+  end
+
+  test "email validation should reject invalid addresses" do
+
+    invalid_addresses = %w[user@example,com User_at_foo.com 
+      foo@foo_baz.com foo@bar+bar.com]
+
+    invalid_addresses.each do |invalid_address|
+      @user.email = invalid_address
+      assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
+    end
+  end
 end
 
