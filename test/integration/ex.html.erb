@@ -1,0 +1,11 @@
+<%= simple_form_for @user, :url => register_path, :method => :post, :html=> { class: 'row contact-form' } do |f| %>
+                        <div class="col-md-12 form-group p-star">
+                            <%= f.input :email, :input_html => { :type => "email", :class => "form-control", :placeholder => "Email" }, label: false %>
+                        </div>
+                        ...
+                        <div class="col-md-12 form-group p-star">
+                            <%= f.check_box :terms_and_conditions, required: true , label: false, :checked => false %>
+                            I’ve read and accept the <%= link_to "terms & conditions*", terms_and_conditions_path, target: "_blank" %>
+                        </div>
+                        ...
+                    <% end %>
