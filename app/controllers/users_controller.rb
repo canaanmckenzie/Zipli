@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #handle successful save
+      #flash success message
+      flash[:success] = "Welcome to Zipli!"
+      redirect_to @user
     else
       render 'new'
     end
